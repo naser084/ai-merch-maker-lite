@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mock Product Visualizer</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #tshirt-canvas {
+      border: 2px dashed #ccc;
+      width: 300px;
+      height: 400px;
+      margin: auto;
+      position: relative;
+      background-image: url("C:\Users\mohammed naser\Downloads\logo.png.jpeg");            /* plain shirt */
+      background-size: cover;
+      background-position: center;
+    }
+
+    #design {
+      position: absolute;
+      width: 150px;
+      top: 120px;
+      left: 75px;
+      opacity: 0.9;
+    }
+
+    .json-output {
+      margin-top: 20px;
+      text-align: left;
+      max-width: 600px;
+      margin: auto;
+      background: #f8f8f8;
+      padding: 10px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>👕 Mock Product Visualizer</h2>
+
+  <p>Upload your design image:</p>
+  <input type="file" id="upload" accept="image/*"/>
+
+  <div id="tshirt-canvas">
+    <img id="design" />
+  </div>
+
+  <div class="json-output">
+    <h3>🧾 Generated Mockup JSON:</h3>
+    <pre id="output">{}</pre>
+  </div>
+
+  <script>
+    const upload = document.getElementById('upload');
+    const design = document.getElementById('design');
+    const output = document.getElementById('output');
+
+    upload.addEventListener('change', function () {
+      const file = this.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        design.src = e.target.result;
+
+        const mockResponse = {
+          product: "Mock T-Shirt",
+          mockup_url: "https://i.ibb.co/qNqc4bm/plain-tshirt.png",
+          overlay_image: e.target.result,
+          position: {
+            top: "120px",
+            left: "75px",
+            width: "150px"
+          },
+          generated_at: new Date().toISOString()
+        };
+
+        output.textContent = JSON.stringify(mockResponse, null, 2);
+      };
+
+      if (file) {
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>

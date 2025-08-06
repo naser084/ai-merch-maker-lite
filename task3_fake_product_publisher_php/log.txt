@@ -1,0 +1,3 @@
+2025-08-05 10:04:25 - {"name":"AI T-Shirt","price":199,"color":"Black"}
+2025-08-05 14:52:26 - {"name":"I Like Turtles (and Pizza)","price":2499,"color":"Teal"}
+2025-08-05 14:58:43 - {"name":"I Like Turtles (and Code)","price":2499,"color":"Teal"}
